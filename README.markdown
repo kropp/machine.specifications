@@ -184,28 +184,23 @@ public class it_example_goes_here : ExampleSpecs {
 # Brief code documentation
 
 ## Definitions
-* Specification (spec) - expected behavior of a class under specific context.
-	* It is also sometimes known as exemplar.
-* Specification class - executable examples of the specification.
-* Observation - expected result of the class method described by the specification.
+* Context - class containing one executable example.
+* Specification (spec) - expected behavior of a class under specific context. A context contains one or more specifications in the form of assertions, one per `It` field.
 
 ## Conventions
-* One class per specification
-* *Class name* - in lower case with underscore separating each word: `when_first_created`. Often starts with *when* to better describe condition/context under which specification applies (under which class is being tested).
-* *Element names* - lower case with underscore separator, same as Class name: `should_do_stuff`
-* *Observation name* - always begins with '*should*' to explicitly remind that this code describes the **expected** behavior.
-	* An alternative naming convention is to drop shoulds, but the language then begins to appear like you're static facts, not theories of behavior: *System should say 'Hello'* vs. *System says 'Hello'*. Choose the language that works better for you. If in doubt, stick with *should* is recommended..
-* *Code placement* - in Mspec all specification elements are C# delegates. Use Lamba expression to define code for each specification element: `It should_do_stuff =()=> stuff.DoIt();`
-* Single `Establish context` and `Because of` per class
-* Single line per `Because of` and `It should_...`
+* *Class name* - One class per context, in lower case with underscore separating each word: `when_creating_a_user`. It should start with *when* to better describe the cirumstances/context under which the specifications apply.
+* *Supporting fields* - typically `Establish context`, `Because of` and `Cleanup after`, i.e. lower case with underscore separator. These fields are optional. `Establish` can be used once per class, and multiple times per class hierachary. `Because` can only be used once per class hierarchy. Class hierarchies deeper than two levels are considered bad practice.
+* *Specifications* - always begins with *should* to explicitly remind that this code describes the **expected** behavior.
+* In Machine.Specification all specification elements are delegates. Use lamba expression to define code for each specification element: `It should_succeed = () => true.ShouldBeTrue();`
+* `Because of` is typically very short (one or two lines of code)
+* `It should_...` should contain only one assertion.
 
 ## Attributes
-* `[Subject( [type], ["subject"] )]` Attribute - decorates every specification class. `type` or `subject` can be omitted, but not both.
-* `[SetupForEachSpecification]` - forces the context to be re-established for each observation (It clause). However it is recommended for observation not to modify the state (thus by default a context needs to be established only once). Try to fix your code to work this way instead of overriding default behavior.
-* `[Tags( "tag", ["optional tag"] ]` - adds tags to the specification class.
-* `[Ignore( "reason", ["reason"] )]` - ignores class or observation.
-* `[Behaviors]` - marks class as a shared behaviors group that can be included in other specification classes.
-	* Use `Behaves_like<TBehavior>` in a specification class to include shared behaviors group.
+* `[Subject([type], ["subject"])]` - may decorate context classes to describe the context in more detail. `type` or `subject` can be omitted, but not both.
+* `[SetupForEachSpecification]` - forces evaluation of `Establish`, `Because` and `Cleanup` before executing each specification (`It`). However, it is recommended that specifications do not modify the state, thus by default a context needs to be established only once. Try to fix your code to work this way instead of overriding default behavior.
+* `[Tags("tag", ["optional tag"]]` - adds tags to the specification class. Tags can be filtered when using the command line and the ReSharper runners.
+* `[Ignore("reason", ["reason"])]` - ignores the context or specification.
+* `[Behaviors]` - marks class as a shared behaviors group that can be included in other context classes. Use `Behaves_like<TBehavior>` in a context class to include shared behaviors group.
 
 ## Class elements
 All specification elements are delegates for code to run specific portion of the spec.  
@@ -269,13 +264,39 @@ public class when_the_user_credentials_cannot_be_verified : ExampleSpecs {
 </pre>
 
 ## Reuse
-If you're reusing behaviors, use *shared behaviors group*. If you're reusing context setup use *inheritance*.
+If you're reusing behaviors, you may use *shared behaviors group*.
+
+If you're reusing context setup use a static helper methods on a base class or [Machine.Fakes](https://github.com/BjRo/Machine.Fakes) [behavior configs](https://github.com/BjRo/Machine.Fakes/blob/dev/Source/Machine.Fakes.Examples/Mood/Auto_faking_with_behavior_configs.cs#L4).
 
 ### Shared behaviors group
-Shared behaviors group allows reuse of expected behavior between different specifications. It's purpose is to confirm that in related specifications with similar contexts some of the behavior will be similar, but some of it will be different.
+Shared behaviors group allows reuse of expected behavior between different contexts. Its purpose is to confirm that in related contexts some of the behavior will be similar.
 
-* Add `[Behaviors]` attribute to the class which contains shared behaviors.
-* In each specification class where you want to reuse behaviors add (appropriately named) `Behaves_like<TBehavior>` member. `TBehavior` is your shared behaviors class.
+* Add the `[Behaviors]` attribute to the class which contains shared specifications.
+* In each context class where you want to reuse specifications add (appropriately named) `Behaves_like<TBehavior>` member. `TBehavior` is your shared behaviors class.
+* All protected fields from the context class that also are available on the behavior class will be copied.
+
+<pre>
+[Behaviors]
+public class AnAdder {
+  protected static int Result;
+
+  It should_add_up_both_numbers = 
+    () => Result.ShouldEqual(42);
+}
+
+public class when_adding_two_numbers_with_the_calculator : ExampleSpecs {
+  protected static int Result;
+  protected static ICalculator Calculator;
+
+  Establish context = 
+    () => { Calculator = new Calculator(); };
+	
+  Because of = 
+    () => { Result = Calculator.Add(40, 2); };
+
+  Behaves_like<AnAdder> an_adder;
+}
+</pre>
 
 ### Inheritance 
 Regular inheritance makes it much easier to reuse common context set up. `Establish context` from both base class and current class will be invoked.
@@ -299,4 +320,5 @@ public class when_a_customer_first_views_the_account_summary_page
 
 ## Additional Links
 * [MVC extensions](https://github.com/jamesbroome/Machine.Specifications.Mvc)
-* [Automocking](https://github.com/jamesbroome/Machine.Specifications.AutoMocking)
+* [Machine.Fakes](https://github.com/BjRo/Machine.Fakes)
+* [AutoMocking](https://github.com/jamesbroome/Machine.Specifications.AutoMocking)
