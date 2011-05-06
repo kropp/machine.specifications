@@ -34,6 +34,7 @@
     <Reference Include="Gallio, Version=3.2.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Gallio\3.2.3\Gallio.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Tools\NUnit\nunit.framework.dll</HintPath>

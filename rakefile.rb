@@ -170,7 +170,8 @@ namespace :tests do
   
   task :run do
     puts 'Running Gallio tests...'
-    sh "Tools/Gallio/v3.1.397/Gallio.Echo.exe", "#{configatron.out_dir}/Tests/Gallio/Machine.Specifications.TestGallioAdapter.3.1.Tests.dll", "/plugin-directory:#{configatron.out_dir}", "/r:Local"
+    sh "Tools/Gallio/v3.1.397/Gallio.Echo.exe", "#{configatron.out_dir}Tests/Gallio/Machine.Specifications.TestGallioAdapter.3.1.Tests.dll", "/plugin-directory:#{configatron.out_dir}Gallio/Gallio-3.1", "/r:Local"
+    sh "Tools/Gallio/v3.2.3/Gallio.Echo.exe",   "#{configatron.out_dir}Tests/Gallio/Machine.Specifications.GallioAdapter.3.2.3.Tests.dll", "/plugin-directory:#{configatron.out_dir}Gallio/Gallio-3.2.3", "/r:Local"
   end
 end
 
@@ -191,6 +192,8 @@ namespace :package do
 
   def packaged_files(root = '.')
     FileList.new("#{root}/**/*") \
+      .exclude("#{root}/Gallio/**/Machine.Specifications.dll") \
+      .exclude("#{root}/Gallio/**/Machine.Specifications.pdb") \
       .exclude("#{root}/**/*.InstallLog") \
       .exclude("#{root}/**/*.InstallState") \
       .exclude("#{root}/Generation") \
