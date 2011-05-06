@@ -16,7 +16,6 @@
     <file path="Machine.Specifications.dll" />
     <file path="Machine.Specifications.GallioAdapter.plugin" />
     <file path="Machine.Specifications.GallioAdapter.3.1.dll" />
-    <!--<file path="Readme.txt" />-->
   </files>
 
   <assemblies>

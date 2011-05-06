@@ -87,6 +87,7 @@
     <ProjectReference Include="..\Machine.Specifications.GallioAdapter.3.2.3\Machine.Specifications.GallioAdapter.3.2.3.csproj">
       <Project>{4C8FE3F2-66D6-4717-8FFD-EEBB2B606E88}</Project>
       <Name>Machine.Specifications.GallioAdapter.3.2.3</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Machine.Specifications\Machine.Specifications.csproj">
       <Project>{CCD02629-1262-4F78-9E9F-AC97B942D0E7}</Project>

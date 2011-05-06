@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <plugin pluginId="Gallio.MSpecAdapter"
         recommendedInstallationPath="MSpec"
         xmlns="http://www.gallio.org/">
   <traits>
     <name>Machine Specifications Adapter Plugin</name>
-    <version>0.4.0.0</version>
+    <version>@configatron.version.compatible@</version>
     <description>Provides support for running MSpec within Gallio. Requires the assemblies from MSpec.</description>
   </traits>
 
@@ -14,16 +14,16 @@
 
   <files>
     <file path="Machine.Specifications.dll" />
-    <file path="Machine.Specifications.GallioAdapter323.plugin" />
-    <file path="Machine.Specifications.GallioAdapter323.dll" />
+    <file path="Machine.Specifications.GallioAdapter.3.2.3.plugin" />
+    <file path="Machine.Specifications.GallioAdapter.3.2.3.dll" />
   </files>
 
   <assemblies>
-    <assembly fullName="Machine.Specifications.GallioAdapter323, Version=0.4.0.0, Culture=neutral, PublicKeyToken=null"
-              codeBase="Machine.Specifications.GallioAdapter323.dll"
+    <assembly fullName="Machine.Specifications.GallioAdapter.3.2.3, Version=@configatron.version.compatible@, Culture=neutral, PublicKeyToken=null"
+              codeBase="Machine.Specifications.GallioAdapter.3.2.3.dll"
               qualifyPartialName="true" />
 
-    <assembly fullName="Machine.Specifications, Version=0.4.0.0, Culture=neutral, PublicKeyToken=null"
+    <assembly fullName="Machine.Specifications, Version=@configatron.version.compatible@, Culture=neutral, PublicKeyToken=5c474de7a495cff1"
               codeBase="Machine.Specifications.dll">
       <bindingRedirects>
         <bindingRedirect oldVersion="0.4.0.0-0.4.65535.65535" />
@@ -34,14 +34,13 @@
   <components>
     <component componentId="Machine.Specifications"
                serviceId="Gallio.TestFramework"
-               componentType="Machine.Specifications.GallioAdapter.MachineSpecificationsFramework, Machine.Specifications.GallioAdapter323">
+               componentType="Machine.Specifications.GallioAdapter.MachineSpecificationsFramework, Machine.Specifications.GallioAdapter.3.2.3">
       <traits>
         <name>Machine Specifications</name>        
-        <frameworkAssemblies>Machine.Specifications, Version=0.4.0.0-0.4.65535.65535</frameworkAssemblies>
-        <version>0.4.0.0</version>
+        <frameworkAssemblies>Machine.Specifications, Version=@configatron.version.compatible@-0.4.65535.65535</frameworkAssemblies>
+        <version>@configatron.version.compatible@</version>
         <fileTypes>Assembly</fileTypes>
       </traits>
     </component>
   </components>
-
 </plugin>
