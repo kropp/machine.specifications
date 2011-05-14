@@ -1,12 +1,12 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Machine.Specifications.GallioAdapter.3.2.3.Tests")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Machine.Specifications.GallioAdapter.3.2")]
+[assembly: AssemblyDescription("An adapter for the Machine Specifications project allowing it to run using the Gallio Test Framework")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
 
@@ -18,4 +18,4 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("94573fe9-f5f4-442e-8d77-b5295d20a44b")]
+[assembly: Guid("ae4e6d69-55cc-4f6f-ba85-59fcd08cd9cb")]

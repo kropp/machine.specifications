@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Machine.Specifications.GallioAdapter.TestResources</RootNamespace>
-    <AssemblyName>Machine.Specifications.GallioAdapter.3.2.3.TestResources</AssemblyName>
+    <AssemblyName>Machine.Specifications.GallioAdapter.3.2.TestResources</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

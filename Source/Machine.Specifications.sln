@@ -66,11 +66,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.Wati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.Example.UsingExternalFile", "Machine.Specifications.Example.UsingExternalFile\Machine.Specifications.Example.UsingExternalFile.csproj", "{A6B234F5-5D96-4809-BD25-86F6544BF838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.GallioAdapter.3.2.3", "Machine.Specifications.GallioAdapter.3.2.3\Machine.Specifications.GallioAdapter.3.2.3.csproj", "{4C8FE3F2-66D6-4717-8FFD-EEBB2B606E88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.GallioAdapter.3.2", "Machine.Specifications.GallioAdapter.3.2\Machine.Specifications.GallioAdapter.3.2.csproj", "{4C8FE3F2-66D6-4717-8FFD-EEBB2B606E88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.GallioAdapter.3.2.3.TestResources", "Machine.Specifications.GallioAdapter.3.2.3.TestResources\Machine.Specifications.GallioAdapter.3.2.3.TestResources.csproj", "{E5277077-9B4C-44A5-91BC-05F23B8E68E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.GallioAdapter.3.2.TestResources", "Machine.Specifications.GallioAdapter.3.2.TestResources\Machine.Specifications.GallioAdapter.3.2.TestResources.csproj", "{E5277077-9B4C-44A5-91BC-05F23B8E68E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.GallioAdapter.3.2.3.Tests", "Machine.Specifications.GallioAdapter.3.2.3.Tests\Machine.Specifications.GallioAdapter.3.2.3.Tests.csproj", "{C867B5E6-521A-4D70-8E62-0E5C697CAB31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.GallioAdapter.3.2.Tests", "Machine.Specifications.GallioAdapter.3.2.Tests\Machine.Specifications.GallioAdapter.3.2.Tests.csproj", "{C867B5E6-521A-4D70-8E62-0E5C697CAB31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

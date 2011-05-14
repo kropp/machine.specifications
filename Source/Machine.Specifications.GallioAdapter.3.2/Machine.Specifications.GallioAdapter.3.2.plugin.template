@@ -14,13 +14,13 @@
 
   <files>
     <file path="Machine.Specifications.dll" />
-    <file path="Machine.Specifications.GallioAdapter.3.2.3.plugin" />
-    <file path="Machine.Specifications.GallioAdapter.3.2.3.dll" />
+    <file path="Machine.Specifications.GallioAdapter.3.2.plugin" />
+    <file path="Machine.Specifications.GallioAdapter.3.2.dll" />
   </files>
 
   <assemblies>
-    <assembly fullName="Machine.Specifications.GallioAdapter.3.2.3, Version=@configatron.version.compatible@, Culture=neutral, PublicKeyToken=null"
-              codeBase="Machine.Specifications.GallioAdapter.3.2.3.dll"
+    <assembly fullName="Machine.Specifications.GallioAdapter.3.2, Version=@configatron.version.compatible@, Culture=neutral, PublicKeyToken=null"
+              codeBase="Machine.Specifications.GallioAdapter.3.2.dll"
               qualifyPartialName="true" />
 
     <assembly fullName="Machine.Specifications, Version=@configatron.version.compatible@, Culture=neutral, PublicKeyToken=5c474de7a495cff1"
@@ -34,7 +34,7 @@
   <components>
     <component componentId="Machine.Specifications"
                serviceId="Gallio.TestFramework"
-               componentType="Machine.Specifications.GallioAdapter.MachineSpecificationsFramework, Machine.Specifications.GallioAdapter.3.2.3">
+               componentType="Machine.Specifications.GallioAdapter.MachineSpecificationsFramework, Machine.Specifications.GallioAdapter.3.2">
       <traits>
         <name>Machine Specifications</name>        
         <frameworkAssemblies>Machine.Specifications, Version=@configatron.version.compatible@-0.4.65535.65535</frameworkAssemblies>
