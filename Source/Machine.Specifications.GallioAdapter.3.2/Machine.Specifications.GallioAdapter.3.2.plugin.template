@@ -23,7 +23,7 @@
               codeBase="Machine.Specifications.GallioAdapter.3.2.dll"
               qualifyPartialName="true" />
 
-    <assembly fullName="Machine.Specifications, Version=@configatron.version.compatible@, Culture=neutral, PublicKeyToken=5c474de7a495cff1"
+    <assembly fullName="Machine.Specifications, Version=@configatron.version.compatible@, Culture=neutral, PublicKeyToken=null"
               codeBase="Machine.Specifications.dll">
       <bindingRedirects>
         <bindingRedirect oldVersion="0.4.0.0-0.4.65535.65535" />
