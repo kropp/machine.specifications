@@ -37,9 +37,9 @@ namespace Machine.Specifications.WatinSupport
     /// </summary>
     /// <param name="result">The result.</param>
     /// <returns></returns>
-    public Result SupplementResult(Result result)
+    public IResult SupplementResult(IResult result)
     {
-      if (result.Status != Status.Failing)
+      if (!result.Failing)
       {
         return result;
       }

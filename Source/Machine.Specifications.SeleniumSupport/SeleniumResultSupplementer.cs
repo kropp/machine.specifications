@@ -12,7 +12,7 @@ namespace Machine.Specifications.SeleniumSupport
     protected abstract ISelenium Selenium { get; }
     protected virtual bool SuppressFullPageScreenshotErrors { get { return false; } }
 
-    public Result SupplementResult(Result result)
+    public IResult SupplementResult(IResult result)
     {
       if (result.Status != Status.Failing)
         return result;

@@ -74,7 +74,7 @@ namespace Machine.Specifications.Reporting.Integration
       _writer.WriteTestStarted(GetSpecificationName(specification), false);
     }
 
-    public void OnSpecificationEnd(SpecificationInfo specification, Result result)
+    public void OnSpecificationEnd(SpecificationInfo specification, IResult result)
     {
       switch (result.Status)
       {

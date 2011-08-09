@@ -19,7 +19,7 @@ namespace Machine.Specifications.Reporting.Generation
       return new Context(contextInfo.Name, specifications);
     }
 
-    public static Specification ToNode(this SpecificationInfo specification, Result result)
+    public static Specification ToNode(this SpecificationInfo specification, IResult result)
     {
       return new Specification(specification.Name, result);
     }

@@ -16,7 +16,7 @@ namespace Machine.Specifications.TDNetRunner
       _formatters[Status.Ignored] = new IgnoredResultFormatter();
     }
 
-    public IResultFormatter GetResultFormatterFor(Result verificationResult)
+    public IResultFormatter GetResultFormatterFor(IResult verificationResult)
     {
       if (_formatters.ContainsKey(verificationResult.Status))
       {

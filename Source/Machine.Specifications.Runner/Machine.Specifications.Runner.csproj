@@ -67,6 +67,7 @@
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="Result.cs" />
     <Compile Include="Runner\AssemblyInfo.cs" />
     <Compile Include="Runner\ContextInfo.cs" />
     <Compile Include="Runner\Impl\AggregateRunListener.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Runner\RunOptions.cs" />
     <Compile Include="Runner\SpecificationInfo.cs" />
     <Compile Include="SpecificationUsageException.cs" />
+    <Compile Include="Status.cs" />
     <Compile Include="Utility\ConsoleRedirection.cs" />
     <Compile Include="Utility\ConsoleStreams.cs" />
     <Compile Include="Utility\Naming.cs" />

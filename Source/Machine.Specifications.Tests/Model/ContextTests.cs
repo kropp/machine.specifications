@@ -7,7 +7,7 @@ namespace Machine.Specifications.Model
   [TestFixture]
   public class ExpectingThrowButDoesntTests : With<ContextWithSpecificationExpectingThrowThatDoesnt>
   {
-    IEnumerable<Result> results;
+    IEnumerable<IResult> results;
 
     public override void BeforeEachTest()
     {
@@ -31,7 +31,7 @@ namespace Machine.Specifications.Model
   [TestFixture]
   public class ThrowingWhenTests : With<ContextWithThrowingWhenAndPassingSpecification>
   {
-    IEnumerable<Result> results;
+    IEnumerable<IResult> results;
 
     public override void BeforeEachTest()
     {
@@ -71,7 +71,7 @@ namespace Machine.Specifications.Model
   [TestFixture]
   public class EmptySpecificationTests : With<ContextWithEmptySpecification>
   {
-    IEnumerable<Result> results;
+    IEnumerable<IResult> results;
 
     public override void BeforeEachTest()
     {
@@ -88,7 +88,7 @@ namespace Machine.Specifications.Model
     [Test]
     public void ShouldHaveNotImplementedResult()
     {
-      results.First().Status.ShouldEqual(Status.NotImplemented);
+      results.First().NotImplemented.ShouldBeTrue();
     }
     
     [Test]

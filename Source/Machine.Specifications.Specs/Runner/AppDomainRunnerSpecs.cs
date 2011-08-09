@@ -108,7 +108,7 @@ namespace Machine.Specifications.Specs.Runner
   public class TestListener : ISpecificationRunListener
   {
     public int SpecCount = 0;
-    public Result LastResult;
+    public IResult LastResult;
     public void OnAssemblyStart(AssemblyInfo assembly)
     {
     }
@@ -138,7 +138,7 @@ namespace Machine.Specifications.Specs.Runner
     {
     }
 
-    public void OnSpecificationEnd(SpecificationInfo specification, Result result)
+    public void OnSpecificationEnd(SpecificationInfo specification, IResult result)
     {
       LastResult = result;
       SpecCount++;

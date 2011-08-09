@@ -9,7 +9,7 @@ namespace Machine.Specifications.Reporting.Model
     readonly Status _status;
     readonly IDictionary<string, IDictionary<string, string>> _supplements;
 
-    public Specification(string name, Result result)
+    public Specification(string name, IResult result)
     {
       _status = result.Status;
       _exception = result.Exception;

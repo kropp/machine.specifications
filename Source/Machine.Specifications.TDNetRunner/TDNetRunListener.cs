@@ -65,7 +65,7 @@ namespace Machine.Specifications.TDNetRunner
     {
     }
 
-    public void OnSpecificationEnd(SpecificationInfo specification, Result result)
+    public void OnSpecificationEnd(SpecificationInfo specification, IResult result)
     {
       var formatter = resultFormatterFactory.GetResultFormatterFor(result);
       testListener.WriteLine(formatter.FormatResult(specification), Category.Output);

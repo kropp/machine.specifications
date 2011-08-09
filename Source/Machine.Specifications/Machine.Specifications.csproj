@@ -83,6 +83,7 @@
     <Compile Include="ComparerStrategies\IComparerStrategy.cs" />
     <Compile Include="ComparerStrategies\NoResult.cs" />
     <Compile Include="ComparerStrategies\ObjectExtension.cs" />
+    <Compile Include="IResult.cs" />
     <Compile Include="ISupplementSpecificationResults.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="SetupForEachSpecification.cs" />

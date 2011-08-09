@@ -97,7 +97,7 @@ namespace Machine.Specifications.ConsoleRunner
       WriteVerbose("» " + specification.Name);
     }
 
-    public void OnSpecificationEnd(SpecificationInfo specification, Result result)
+    public void OnSpecificationEnd(SpecificationInfo specification, IResult result)
     {
       _specificationCount += 1;
       switch (result.Status)

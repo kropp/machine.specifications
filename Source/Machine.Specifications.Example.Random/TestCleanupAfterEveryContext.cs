@@ -107,7 +107,7 @@ namespace Machine.Specifications.Specs
   {
     public static bool SupplementResultRun;
 
-    public Result SupplementResult(Result result)
+    public IResult SupplementResult(IResult result)
     {
       SupplementResultRun = true;
       return result;
@@ -123,7 +123,7 @@ namespace Machine.Specifications.Specs
   {
     public static bool SupplementResultRun;
 
-    public Result SupplementResult(Result result)
+    public IResult SupplementResult(IResult result)
     {
       SupplementResultRun = true;
       return result;

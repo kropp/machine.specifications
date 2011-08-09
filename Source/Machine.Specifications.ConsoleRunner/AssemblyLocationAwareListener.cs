@@ -45,7 +45,7 @@ namespace Machine.Specifications.ConsoleRunner
     {
     }
 
-    public void OnSpecificationEnd(SpecificationInfo specification, Result result)
+    public void OnSpecificationEnd(SpecificationInfo specification, IResult result)
     {
     }
 

@@ -47,7 +47,7 @@ namespace Machine.Specifications.Model
       context = Target.CreateContextFrom(fakeContext);
     }
 
-    public IEnumerable<Result> Run(Context context)
+    public IEnumerable<IResult> Run(Context context)
     {
       var runner = ContextRunnerFactory.GetContextRunnerFor(context);
       return runner.Run(context, new RunListenerBase(), RunOptions.Default, new Framework.ICleanupAfterEveryContextInAssembly[] {}, new ISupplementSpecificationResults[] {});

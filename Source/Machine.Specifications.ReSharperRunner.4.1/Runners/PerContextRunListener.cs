@@ -53,7 +53,7 @@ namespace Machine.Specifications.ReSharperRunner.Runners
       notify(task => _server.TaskProgress(task, "Running specification"));
     }
 
-    public void OnSpecificationEnd(SpecificationInfo specification, Result result)
+    public void OnSpecificationEnd(SpecificationInfo specification, IResult result)
     {
       var notify = CreateTaskNotificationFor(specification);
 
