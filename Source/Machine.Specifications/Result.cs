@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Machine.Specifications
 {
@@ -164,7 +163,7 @@ namespace Machine.Specifications
     private Result(Exception exception)
     {
       _status = Status.Failing;
-      this.Exception = new ExceptionResult(exception);
+      Exception = new ExceptionResult(exception);
     }
 
     private Result(Status status)
@@ -175,7 +174,7 @@ namespace Machine.Specifications
     private Result(Result result, string supplementName, IDictionary<string, string> supplement)
     {
       _status = result.Status;
-      this.Exception = result.Exception;
+      Exception = result.Exception;
 
       foreach (var pair in result._supplements)
       {
@@ -188,8 +187,8 @@ namespace Machine.Specifications
       }
 
       _supplements.Add(supplementName, supplement);
-      this.ConsoleOut = result.ConsoleOut;
-      this.ConsoleError = result.ConsoleError;
+      ConsoleOut = result.ConsoleOut;
+      ConsoleError = result.ConsoleError;
     }
 
     public static Result Pass()

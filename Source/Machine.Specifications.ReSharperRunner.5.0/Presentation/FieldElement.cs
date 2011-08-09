@@ -4,9 +4,9 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Util;
 using JetBrains.Text;
-using Machine.Specifications.Utility;
-using Machine.Specifications.Utility.Internal;
 using JetBrains.ReSharper.UnitTestFramework;
+
+using Machine.Specifications.Utility;
 
 namespace Machine.Specifications.ReSharperRunner.Presentation
 {

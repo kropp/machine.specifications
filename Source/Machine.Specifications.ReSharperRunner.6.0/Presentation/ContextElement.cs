@@ -8,8 +8,7 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.UnitTestFramework;
 using JetBrains.Util;
 
-using Machine.Specifications.Factories;
-using Machine.Specifications.Utility.Internal;
+using Machine.Specifications.Utility;
 
 namespace Machine.Specifications.ReSharperRunner.Presentation
 {

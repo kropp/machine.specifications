@@ -1,7 +1,6 @@
 using System;
 
 using Machine.Specifications.Annotations;
-using Machine.Specifications.Model;
 
 namespace Machine.Specifications
 {
@@ -9,12 +8,12 @@ namespace Machine.Specifications
   [MeansImplicitUse(ImplicitUseTargetFlags.WithMembers)]
   public class SubjectAttribute : Attribute
   {
-    readonly Type _subjectType;
     readonly string _subject;
+    readonly Type _subjectType;
 
     public SubjectAttribute(Type subjectType)
     {
-      this._subjectType = subjectType;
+      _subjectType = subjectType;
     }
 
     public SubjectAttribute(Type subjectType, string subject)
@@ -28,9 +27,14 @@ namespace Machine.Specifications
       _subject = subject;
     }
 
-    public Subject CreateSubject()
+    public Type SubjectType
     {
-      return new Subject(_subjectType,_subject);
+      get { return _subjectType; }
+    }
+
+    public string Subject
+    {
+      get { return _subject; }
     }
   }
 }

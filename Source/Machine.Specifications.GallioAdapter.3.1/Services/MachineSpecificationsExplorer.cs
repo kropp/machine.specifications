@@ -23,6 +23,7 @@ using Gallio.Common.Reflection;
 using Gallio.Model;
 using Gallio.Model.Helpers;
 using Gallio.Model.Tree;
+
 using Machine.Specifications.Explorers;
 using Machine.Specifications.GallioAdapter.Model;
 using Machine.Specifications.Utility;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+
 using Machine.Specifications.Runner;
 
 namespace Machine.Specifications.ConsoleRunner
@@ -11,17 +12,17 @@ namespace Machine.Specifications.ConsoleRunner
   /// </summary>
   public class AssemblyLocationAwareListener : ISpecificationRunListener
   {
-    string originalDirectory;
+    string _originalDirectory;
 
     public void OnAssemblyStart(AssemblyInfo assembly)
     {
-      this.originalDirectory = Environment.CurrentDirectory;
+      _originalDirectory = Environment.CurrentDirectory;
       Environment.CurrentDirectory = Path.GetDirectoryName(assembly.Location);
     }
 
     public void OnAssemblyEnd(AssemblyInfo assembly)
     {
-      Environment.CurrentDirectory = this.originalDirectory;
+      Environment.CurrentDirectory = _originalDirectory;
     }
 
     public void OnRunStart()

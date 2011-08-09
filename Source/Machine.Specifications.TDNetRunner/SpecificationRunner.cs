@@ -1,12 +1,8 @@
-using System;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using Machine.Specifications.Explorers;
+
 using Machine.Specifications.Runner;
 using Machine.Specifications.Runner.Impl;
-using Machine.Specifications.TDNetRunner;
+
 using TestDriven.Framework;
 
 namespace Machine.Specifications.TDNetRunner

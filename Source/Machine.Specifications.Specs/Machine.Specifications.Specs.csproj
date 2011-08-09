@@ -105,6 +105,10 @@
       <Project>{89ECD0D1-6CC4-4319-B1B2-389E0B48F40D}</Project>
       <Name>Machine.Specifications.FailingExample</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Machine.Specifications.Runner\Machine.Specifications.Runner.csproj">
+      <Project>{98DFE6D7-FB76-4DF1-BDFD-2B8648E29C51}</Project>
+      <Name>Machine.Specifications.Runner</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Machine.Specifications\Machine.Specifications.csproj">
       <Project>{CCD02629-1262-4F78-9E9F-AC97B942D0E7}</Project>
       <Name>Machine.Specifications</Name>

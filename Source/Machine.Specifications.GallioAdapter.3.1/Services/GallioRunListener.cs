@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Machine.Specifications.Runner;
-using Machine.Specifications.Runner.Impl;
+
 using Machine.Specifications.GallioAdapter.Model;
 using Gallio.Runtime.ProgressMonitoring;
 using Gallio.Model;
 using Gallio.Model.Commands;
 using Gallio.Framework;
 using Gallio.Model.Contexts;
+
+using Machine.Specifications.Runner;
+using Machine.Specifications.Runner.Impl;
 
 namespace Machine.Specifications.GallioAdapter.Services
 {

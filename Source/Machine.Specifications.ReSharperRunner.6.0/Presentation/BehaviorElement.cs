@@ -4,8 +4,6 @@ using System.Xml;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.UnitTestFramework;
 
-using Machine.Specifications.Factories;
-
 namespace Machine.Specifications.ReSharperRunner.Presentation
 {
   public class BehaviorElement : FieldElement

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using Machine.Specifications.Factories;
 using Machine.Specifications.Runner;
 using Machine.Specifications.Runner.Impl;
@@ -49,7 +50,7 @@ namespace Machine.Specifications.Model
     public IEnumerable<Result> Run(Context context)
     {
       var runner = ContextRunnerFactory.GetContextRunnerFor(context);
-      return runner.Run(context, new RunListenerBase(), RunOptions.Default, new ICleanupAfterEveryContextInAssembly[] {}, new ISupplementSpecificationResults[] {});
+      return runner.Run(context, new RunListenerBase(), RunOptions.Default, new Framework.ICleanupAfterEveryContextInAssembly[] {}, new ISupplementSpecificationResults[] {});
     }
   }
 }

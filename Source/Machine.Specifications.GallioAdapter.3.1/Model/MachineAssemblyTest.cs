@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Gallio.Model;
-using Machine.Specifications.Model;
 using Gallio.Common.Reflection;
 
 namespace Machine.Specifications.GallioAdapter.Model

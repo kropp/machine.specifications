@@ -37,9 +37,10 @@ namespace Machine.Specifications.ReSharperRunner
         return privateFieldsOfType;
     }
 
-      public static IEnumerable<IMetadataField> GetBehaviors(this IMetadataTypeInfo type)
+    public static IEnumerable<IMetadataField> GetBehaviors(this IMetadataTypeInfo type)
     {
-      IEnumerable<IMetadataField> behaviorFields = type.GetPrivateFieldsWith(typeof(Behaves_like<>));
+      // HACK Not sure this will work.
+      IEnumerable<IMetadataField> behaviorFields = type.GetPrivateFieldsOfType<Framework.It>();
       foreach (IMetadataField field in behaviorFields)
       {
         if (field.GetFirstGenericArgument().HasCustomAttribute(typeof(BehaviorsAttribute).FullName))
@@ -146,10 +147,10 @@ namespace Machine.Specifications.ReSharperRunner
 
     static IEnumerable<IMetadataField> GetPrivateFieldsOfType<T>(this IMetadataTypeInfo type)
     {
-      return type.GetPrivateFieldsWith(typeof(T));
+      return type.GetPrivateFieldsOfType(typeof(T));
     }
 
-    static IEnumerable<IMetadataField> GetPrivateFieldsWith(this IMetadataTypeInfo type, Type fieldType)
+    static IEnumerable<IMetadataField> GetPrivateFieldsOfType(this IMetadataTypeInfo type, Type fieldType)
     {
         var metadataFields = type.GetPrivateFields();
         var fields = metadataFields.Where(x => x.Type is IMetadataClassType);

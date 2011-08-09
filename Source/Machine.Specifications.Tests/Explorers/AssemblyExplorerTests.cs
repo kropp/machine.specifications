@@ -151,12 +151,12 @@ namespace Machine.Specifications.Explorers
   [TestFixture]
   public class AssemblyExplorer_FindAssemblyContextsIn_WithinAnAssembly : TestsFor<AssemblyExplorer>
   {
-    private List<IAssemblyContext> assemblyContexts;
+    private List<Framework.IAssemblyContext> assemblyContexts;
 
     public override void BeforeEachTest()
     {
       var assembly = Assembly.GetExecutingAssembly();
-      assemblyContexts = new List<IAssemblyContext>(Target.FindAssemblyContextsIn(assembly));
+      assemblyContexts = new List<Framework.IAssemblyContext>(Target.FindAssemblyContextsIn(assembly));
     }
 
     [Test]
