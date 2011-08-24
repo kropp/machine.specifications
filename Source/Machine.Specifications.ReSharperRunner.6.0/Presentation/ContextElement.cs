@@ -18,20 +18,18 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
   public class ContextElement : Element, ISerializableElement
   {
     readonly string _assemblyLocation;
-    readonly string _subject;
     readonly IEnumerable<UnitTestElementCategory> _categories;
 
     public ContextElement(MSpecUnitTestProvider provider,
                           ProjectModelElementEnvoy projectEnvoy,
+                          SubjectElement subjectElement,
                           string typeName,
                           string assemblyLocation,
-                          string subject,
                           IEnumerable<string> tags,
                           bool isIgnored)
-      : base(provider, null, projectEnvoy, typeName, isIgnored)
+      : base(provider, subjectElement, projectEnvoy, typeName, isIgnored)
     {
       _assemblyLocation = assemblyLocation;
-      _subject = subject;
 
       if (tags != null)
       {
@@ -44,6 +42,11 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
       get { return Kind; }
     }
 
+    public SubjectElement Subject
+    {
+      get { return (SubjectElement)Parent; }
+    }
+
     public string AssemblyLocation
     {
       get { return _assemblyLocation; }
@@ -51,17 +54,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
 
     public override string GetPresentation()
     {
-      return GetSubject() + new ClrTypeName(GetTypeClrName()).ShortName.ToFormat();
-    }
-
-    string GetSubject()
-    {
-      if (String.IsNullOrEmpty(_subject))
-      {
-        return null;
-      }
-
-      return _subject + ", ";
+      return new ClrTypeName(GetTypeClrName()).ShortName.ToFormat();
     }
 
     public override IDeclaredElement GetDeclaredElement()
@@ -81,7 +74,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
 
     public override string Id
     {
-      get { return CreateId(_subject, TypeName); }
+      get { return CreateId(Subject, TypeName); }
     }
 
     public void WriteToXml(XmlElement parent)
@@ -89,7 +82,6 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
       parent.SetAttribute("typeName", TypeName);
       parent.GetAttribute("assemblyLocation", AssemblyLocation);
       parent.SetAttribute("isIgnored", Explicit.ToString());
-      parent.GetAttribute("subject", GetSubject());
     }
 
     public static IUnitTestElement ReadFromXml(XmlElement parent, IUnitTestElement parentElement, MSpecUnitTestProvider provider)
@@ -101,24 +93,29 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
         return null;
       }
 
+      var subject = parentElement as SubjectElement;
+      if (subject == null)
+      {
+        return null;
+      }
+
       var typeName = parent.GetAttribute("typeName");
       var assemblyLocation = parent.GetAttribute("assemblyLocation");
       var isIgnored = bool.Parse(parent.GetAttribute("isIgnored"));
-      var subject = parent.GetAttribute("subject");
 
       return ContextFactory.GetOrCreateContextElement(provider,
                                                       project,
                                                       ProjectModelElementEnvoy.Create(project),
+                                                      subject,
                                                       typeName,
                                                       assemblyLocation,
-                                                      subject,
                                                       EmptyArray<string>.Instance,
                                                       isIgnored);
     }
 
-    public static string CreateId(string subject, string typeName)
+    public static string CreateId(SubjectElement subject, string typeName)
     {
-      var id = String.Format("{0}.{1}", subject, typeName);
+      var id = String.Format("{0}.{1}", subject.Id, typeName);
       System.Diagnostics.Debug.WriteLine("CE  " + id);
       return id;
     }

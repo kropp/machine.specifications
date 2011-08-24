@@ -15,12 +15,21 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
   {
     public Presenter()
     {
+      Present<SubjectElement>(PresentSubject);
       Present<ContextElement>(PresentContext);
       Present<FieldElement>(PresentSpecification);
       Present<BehaviorElement>(PresentBehavior);
       Present<BehaviorSpecificationElement>(PresentBehaviorSpecification);
     }
 
+    protected virtual void PresentSubject(SubjectElement element,
+                                          IPresentableItem item,
+                                          TreeModelNode modelNode,
+                                          PresentationState state)
+    {
+      PresentItem(item, element, state, UnitTestElementImage.TestContainer);
+    }
+    
     protected virtual void PresentContext(ContextElement element,
                                           IPresentableItem item,
                                           TreeModelNode modelNode,

@@ -19,6 +19,7 @@ namespace Machine.Specifications.ReSharperRunner.Explorers
     readonly UnitTestElementConsumer _consumer;
     readonly ContextFactory _contextFactory;
     readonly ContextSpecificationFactory _contextSpecificationFactory;
+    SubjectFactory _subjectFactory;
 
     public AssemblyExplorer(MSpecUnitTestProvider provider,
                             IMetadataAssembly assembly,
@@ -34,6 +35,7 @@ namespace Machine.Specifications.ReSharperRunner.Explorers
 
         var cache = new ContextCache();
 #if RESHARPER_6
+        _subjectFactory = new SubjectFactory(provider, project, projectEnvoy, _assembly.Location.FullPath, cache);
         _contextFactory = new ContextFactory(provider, project, projectEnvoy, _assembly.Location.FullPath, cache);
 #else
         _contextFactory = new ContextFactory(provider, project, projectEnvoy, _assembly.Location, cache);
@@ -60,7 +62,11 @@ namespace Machine.Specifications.ReSharperRunner.Explorers
 
       _assembly.GetTypes().Where(type => type.IsContext()).ForEach(type =>
       {
-        var contextElement = _contextFactory.CreateContext(type);
+        System.Diagnostics.Debugger.Launch();
+        var subjectElement = _subjectFactory.CreateSubject(type);
+        _consumer(subjectElement);
+
+        var contextElement = _contextFactory.CreateContext(subjectElement, type);
         _consumer(contextElement);
 
         type

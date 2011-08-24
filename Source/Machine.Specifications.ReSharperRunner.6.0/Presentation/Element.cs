@@ -35,11 +35,6 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
         throw new ArgumentNullException("project");
       }
 
-      if (declaringTypeName == null)
-      {
-        throw new ArgumentNullException("declaringTypeName");
-      }
-
       if (projectEnvoy != null)
       {
         _projectEnvoy = projectEnvoy;

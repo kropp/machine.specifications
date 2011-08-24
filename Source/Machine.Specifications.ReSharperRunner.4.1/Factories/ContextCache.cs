@@ -11,9 +11,16 @@ namespace Machine.Specifications.ReSharperRunner.Factories
     public ContextCache()
     {
       Classes = new Dictionary<ITypeElement, ContextElement>();
+      Subjects = new Dictionary<ITypeElement, SubjectElement>();
     }
 
     public IDictionary<ITypeElement, ContextElement> Classes
+    {
+      get;
+      private set;
+    }
+    
+    public IDictionary<ITypeElement, SubjectElement> Subjects
     {
       get;
       private set;
