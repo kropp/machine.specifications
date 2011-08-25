@@ -45,7 +45,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
 
     public override IDeclaredElement GetDeclaredElement()
     {
-      return GetDeclaredType();
+      return null;
     }
 
     public override string Kind

@@ -110,7 +110,12 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
 
     public UnitTestNamespace GetNamespace()
     {
-      return new UnitTestNamespace(new ClrTypeName(_declaringTypeName).GetNamespaceName());
+      if (_declaringTypeName != null)
+      {
+        return new UnitTestNamespace(new ClrTypeName(_declaringTypeName).GetNamespaceName());
+      }
+
+      return new UnitTestNamespace("Machine.Specifications");
     }
 
     public UnitTestElementDisposition GetDisposition()
