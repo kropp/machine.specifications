@@ -7,10 +7,11 @@ The most recent release is available at [CodeBetter's TeamCity server](http://te
   * [Signed release](http://teamcity.codebetter.com/guestAuth/repository/download/bt345/.lastSuccessful/Machine.Specifications-Signed-Release.zip).
   
 You can also install these using [NuGet](http://nuget.org/Packages/Search?packageType=Packages&searchCategory=All+Categories&searchTerm=machine.specifications):
-<pre>
+
+```
   PM> Install-Package Machine.Specifications
   PM> Install-Package Machine.Specifications-Signed
-</pre>
+```
 
 On top of that we provide downloads for the latest successful build (possibly more current than the releases above):
 
@@ -71,7 +72,7 @@ MSpec, like other testing frameworks, provides a robust command-line runner that
 
 Usage of the command-line runner is as follows (from `mspec.exe --help`):
 
-<pre>
+```
 Usage: mspec.exe [options] &lt;assemblies&gt;
 Options:
 -i, --include  Executes all specifications in contexts with these comma delimited tags. Ex. -i "foo,bar,foo_bar"
@@ -84,7 +85,7 @@ Options:
 --xml &lt;PATH&gt;   Outputs the XML report to the file referenced by the path
 -h, --help     Shows this help message
 Usage: mspec.exe [options] &lt;assemblies&gt;
-</pre>
+```
 
 #### Selenium Support in the command-line runner
 
@@ -165,21 +166,21 @@ If you're consistently finding that you need to have multiple lines in your `Bec
 
 For example:
 
-<pre>
+```csharp
 public class because_example_goes_here : ExampleSpecs {
 
 }
-</pre>
+```
 
 #### It
 
 Simultaneously, your `It` statements should be single-liners and reflect a single assertion. If you're stuffing multiple assertions into a single `It`, considering the wording of that `It` and how you may be able to break it up into two or more specifications, each containing a single statement.
 
-<pre>
+```csharp
 public class it_example_goes_here : ExampleSpecs {
 
 }
-</pre>
+```
 
 # Brief code documentation
 
@@ -233,7 +234,7 @@ List of *shoulds* (grouped by related input type):
 * `ShouldEqual` & `ShouldNotEqual` - compares using Equals methods.
 * `ShouldBeNull` & `ShouldNotBeNull`
 * `ShouldBeTheSameAs` & `ShouldNotBeTheSameAs` - compares references.
-* `ShouldBeOfType`, S`houldBe` & `ShouldNotBeOfType`- confirms object is of specific type (or not). `ShouldBe` is the same as `ShouldBeOfType`.
+* `ShouldBeOfType`, `ShouldBe` & `ShouldNotBeOfType`- confirms object is of specific type (or not). `ShouldBe` is the same as `ShouldBeOfType`.
 * `ShouldEachConformTo` - confirms all items in collection confirm to the provided condition.
 * `ShouldContain` & `ShouldNotContain` - confirms collection contains (or not) specified items. Can also confirm that string contains another string.
 * `ShouldContainOnly` - confirms collections contains only provided items.
@@ -249,7 +250,7 @@ List of *shoulds* (grouped by related input type):
 ## Exceptions
 When testing for exceptions it is recommended that you use the `Catch` class in your `Because` statement then validate the exception in subsequent `It` statements. This ensures that no validation of the `Exception` occurs in the `Because` statement. It is also recommended to include an `It` statement that explicitly determines the type of `Exception` if that is important to you. Doing so will improve the readability of your specifications clarifying how the system is intended to behave. 
 
-<pre>
+```csharp
 public class when_the_user_credentials_cannot_be_verified : ExampleSpecs {
   
   static Exception Exception;
@@ -261,7 +262,7 @@ public class when_the_user_credentials_cannot_be_verified : ExampleSpecs {
     Exception.ShouldBeOfType&lt;AuthenticationFailedException&gt;();
 
 }
-</pre>
+```
 
 ## Reuse
 If you're reusing behaviors, you may use *shared behaviors group*.
@@ -275,7 +276,7 @@ Shared behaviors group allows reuse of expected behavior between different conte
 * In each context class where you want to reuse specifications add (appropriately named) `Behaves_like<TBehavior>` member. `TBehavior` is your shared behaviors class.
 * All protected fields from the context class that also are available on the behavior class will be copied.
 
-<pre>
+```csharp
 [Behaviors]
 public class AnAdder {
   protected static int Result;
@@ -296,7 +297,7 @@ public class when_adding_two_numbers_with_the_calculator : ExampleSpecs {
 
   Behaves_like<AnAdder> an_adder;
 }
-</pre>
+```
 
 ### Inheritance 
 Regular inheritance makes it much easier to reuse common context set up. `Establish context` from both base class and current class will be invoked.
@@ -308,7 +309,7 @@ Creating a specification class with empty `It` delegates helps to fully capture 
 
 All observations will show up as "unimplemented" in reports.
 
-<pre>
+```csharp
 [Subject("Recent Account Activity Summary page")]
 public class when_a_customer_first_views_the_account_summary_page
 {
@@ -316,7 +317,7 @@ public class when_a_customer_first_views_the_account_summary_page
 	It should_display_debit_amounts_in_red_text;
 	It should_display_deposit_amounts_in_black_text;
 }
-</pre>
+```
 
 ## Additional Links
 * [MVC extensions](https://github.com/jamesbroome/Machine.Specifications.Mvc)
