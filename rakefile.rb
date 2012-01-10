@@ -27,11 +27,41 @@ task :configure do
   configatron.nuget.key = Configatron::Dynamic.new do
     next File.read('NUGET_KEY') if File.readable?('NUGET_KEY')
   end
+  configatron.chocolaty.key = Configatron::Dynamic.new do
+    next File.read('CHOCOLATEY_KEY') if File.readable?('CHOCOLATEY_KEY')
+  end
   configatron.project = Configatron::Delayed.new do
     "#{project}#{"-Testing" if ENV.include? 'VERSION'}#{'-Signed' if configatron.sign_assembly}"
   end
+  configatron.tools.project = Configatron::Delayed.new do
+    "#{configatron.project}.tools"
+  end
+  configatron.tools.resharper51.project = Configatron::Delayed.new do
+    "#{configatron.tools.project}.resharper51"
+  end
+  configatron.tools.resharper60.project = Configatron::Delayed.new do
+    "#{configatron.tools.project}.resharper60"
+  end
+  configatron.tools.resharper61.project = Configatron::Delayed.new do
+    "#{configatron.tools.project}.resharper61"
+  end
+  configatron.tools.title = Configatron::Delayed.new do
+    "#{configatron.project} Tools"
+  end
   configatron.nuget.package = Configatron::Delayed.new do
     "Distribution/#{configatron.project}.#{configatron.version.compatible}.nupkg"
+  end
+  configatron.tools.package = Configatron::Delayed.new do
+    "Distribution/#{configatron.tools.project}.#{configatron.version.compatible}.nupkg"
+  end
+  configatron.tools.resharper51.package = Configatron::Delayed.new do
+    "Distribution/#{configatron.tools.resharper51.project}.#{configatron.version.compatible}.nupkg"
+  end
+  configatron.tools.resharper60.package = Configatron::Delayed.new do
+    "Distribution/#{configatron.tools.resharper60.project}.#{configatron.version.compatible}.nupkg"
+  end
+  configatron.tools.resharper61.package = Configatron::Delayed.new do
+    "Distribution/#{configatron.tools.resharper61.project}.#{configatron.version.compatible}.nupkg"
   end
   configatron.zip.package = Configatron::Delayed.new do
     "Distribution/#{configatron.project}-#{configatron.target}.zip"
@@ -218,7 +248,7 @@ namespace :package do
       sz.zip :files => packaged_files
     end
   end
-  
+
   def create_package
     opts = ["pack", "mspec.nuspec",
       "-BasePath", "#{configatron.out_dir}NuGet".gsub(/\//, '\\'),
@@ -226,9 +256,43 @@ namespace :package do
 
     sh ".nuget/NuGet.exe", *(opts)
   end
+  
+  def create_tools_package(package_name)
+    opts = ["pack", package_name,
+      "-OutputDirectory", configatron.tools.package.dirname]
+      
+    sh ".nuget/NuGet.exe", *(opts)
+  end
+    
+  def publish_nuget_package
+    raise "NuGet access key is missing, cannot publish" if configatron.nuget.key.nil?
+    
+    opts = ["push",
+      configatron.nuget.package,
+      configatron.nuget.key,
+      { :verbose => false }]
 
+    sh ".nuget/NuGet.exe", *(opts) do |ok, status|
+      ok or fail "Command failed with status (#{status.exitstatus})"
+    end
+  end
+
+  def publish_tools_package(package_path)
+    raise "Chocolatey access key is missing, cannot publish" if configatron.chocolatey.key.nil?
+    
+    opts = ["push",
+      package_path,
+      configatron.chocolatey.key,
+      "-Source", "http://chocolatey.org/",
+      { :verbose => false }]
+
+    sh ".nuget/NuGet.exe", *(opts) do |ok, status|
+      ok or fail "Command failed with status (#{status.exitstatus})"
+    end
+  end
+  
   namespace :nuget do
-    desc "Package build artifacts as a NuGet package and a symbols package"
+    desc "Package build artifacts as a NuGet package, symbols package, and Chocolatey tools packages"
     task :create => :zip do
       net_20_framework_files(configatron.out_dir).copy_hierarchy \
         :source_dir => configatron.out_dir,
@@ -253,20 +317,20 @@ namespace :package do
 
       FileList["#{configatron.out_dir}NuGet/src/", "#{configatron.out_dir}NuGet/**/*.pdb"].each { |f| rm_rf f }
       create_package
+      
+      create_tools_package "mspec.tools.nuspec"
+      create_tools_package "mspec.tools.resharper51.nuspec"
+      create_tools_package "mspec.tools.resharper60.nuspec"
+      create_tools_package "mspec.tools.resharper61.nuspec"
     end
-    
+
     desc "Publishes the NuGet package"
     task :publish do
-      raise "NuGet access key is missing, cannot publish" if configatron.nuget.key.nil?
-
-      opts = ["push",
-        configatron.nuget.package,
-        configatron.nuget.key,
-        { :verbose => false }]
-
-      sh ".nuget/NuGet.exe", *(opts) do |ok, status|
-        ok or fail "Command failed with status (#{status.exitstatus})"
-      end
+      publish_nuget_package
+      publish_tools_package configatron.tools.package
+      publish_tools_package configatron.tools.resharper51.package
+      publish_tools_package configatron.tools.resharper60.package
+      publish_tools_package configatron.tools.resharper61.package
     end
   end
 end
