@@ -17,8 +17,7 @@ NDependOut
 /Distribution
 /Specs
 /packages
-install.ps1
-install.*.ps1
+*.install.ps1
 mspec.nuspec
 mspec.*.nuspec
 Source/Machine.Specifications.GallioAdapter/Machine.Specifications.GallioAdapter.plugin
