@@ -18,7 +18,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
 {
   public abstract class Element : IUnitTestElement
   {
-    readonly string _declaringTypeName;
+    readonly IClrTypeName _declaringTypeName;
     readonly ProjectModelElementEnvoy _projectEnvoy;
     readonly MSpecUnitTestProvider _provider;
     readonly UnitTestTaskFactory _taskFactory;
@@ -30,7 +30,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
                       PsiModuleManager psiModuleManager,
                       CacheManager cacheManager,
                       Element parent,
-                      ProjectModelElementEnvoy projectEnvoy, string declaringTypeName, bool isIgnored)
+                      ProjectModelElementEnvoy projectEnvoy, IClrTypeName declaringTypeName, bool isIgnored)
     {
       if (projectEnvoy == null && !Shell.Instance.IsTestShell)
       {
@@ -65,7 +65,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
       _taskFactory = new UnitTestTaskFactory(_provider.ID);
     }
 
-    public string TypeName { get; protected set; }
+    public IClrTypeName TypeName { get; protected set; }
     public abstract string Kind { get; }
     public abstract IEnumerable<UnitTestElementCategory> Categories { get; }
     public string ExplicitReason { get; private set; }
@@ -119,7 +119,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
 
     public UnitTestNamespace GetNamespace()
     {
-      return new UnitTestNamespace(new ClrTypeName(_declaringTypeName).GetNamespaceName());
+      return new UnitTestNamespace(_declaringTypeName.GetNamespaceName());
     }
 
     public UnitTestElementDisposition GetDisposition()
@@ -277,7 +277,7 @@ namespace Machine.Specifications.ReSharperRunner.Presentation
       return declarationsCache.GetTypeElementByCLRName(_declaringTypeName);
     }
 
-    public string GetTypeClrName()
+    public IClrTypeName GetTypeClrName()
     {
       return _declaringTypeName;
     }
